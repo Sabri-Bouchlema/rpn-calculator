@@ -55,6 +55,7 @@ public class CalculatorServiceImpl implements CalculatorService {
     public void applyOperand(final Operand op, final Integer id){
         Assert.notNull(op, "Operand must not be null");
         ArrayDeque<Double> stack = getStackById(id);
+        Assert.isTrue(stack.size() >= 2, "Could not apply operand, stack must contain at least 2 elements");
         Double latest1 = stack.removeLast();
         Double latest2 = stack.removeLast();
         OperandExecutor executor = Operands.getInstance().get(op);
